@@ -9,6 +9,7 @@ const timeElements = document.querySelectorAll('span');
 let countdownTitle = '';
 let countdownDate = '';
 let countdownValue = Date;
+let countdownActive;
 
 const second = 1000; //1 sec = 1000ms (default unit)
 const minute = second * 60;
@@ -21,7 +22,9 @@ dateEl.setAttribute('min', today);
 
 //Populate countdown
 function updateDOM(){
-    //current time and how far away from 1970
+    //fx will run/update every second
+    countdownActive = setInterval(()=> {
+        //current time and how far away from 1970
     const now = new Date().getTime();
     const distance = countdownValue - now;
 
@@ -42,6 +45,7 @@ function updateDOM(){
     inputContainer.hidden = true;
     //show countdown
     countdownEl.hidden = false;
+    }, second);
 }
 
 
@@ -51,13 +55,33 @@ function updateCountdown(e){
     countdownTitle = e.srcElement[0].value;
     countdownDate = e.srcElement[1].value;
 
-    //get number version of current Date, aka get the individual days/hr/min/sec
-    countdownValue = new Date(countdownDate).getTime();
+    //check for valid date aka check if user put date
+    if(countdownDate === ''){
+        alert("Please select a date for the countdown!");
+    } else {
+        //get number version of current Date, aka get the individual days/hr/min/sec
+        countdownValue = new Date(countdownDate).getTime();
 
-    updateDOM();
+        updateDOM();
+    }
+
 }
 
+//Reset all values
+function reset(){
+    //hide countdown, show input
+    countdownEl.hidden = true;
+    inputContainer.hidden = false;
 
+    //stop countdown
+    clearInterval(countdownActive);
 
-//event listener - 
+    //reset values
+    countdownTitle = '';
+    countdownDate = '';
+}
+
+//event listener - to take w/e in form to place as initialized values
 countdownForm.addEventListener('submit', updateCountdown);
+//listener - to reset and go back to form
+countdownBtn.addEventListener('click', reset);
