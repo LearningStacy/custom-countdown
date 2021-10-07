@@ -15,6 +15,8 @@ let countdownDate = '';
 let countdownValue = Date;
 let countdownActive;
 
+let savedCountdown;
+
 const second = 1000; //1 sec = 1000ms (default unit)
 const minute = second * 60;
 const hour = minute * 60;
@@ -68,6 +70,13 @@ function updateCountdown(e){
     e.preventDefault();
     countdownTitle = e.srcElement[0].value;
     countdownDate = e.srcElement[1].value;
+    //local storage - save countdown
+    savedCountdown = {
+        title: countdownTitle,
+        date: countdownDate,
+    };
+    //if you see object [object] - you forgot to convert to string, bc storage only see strings
+    localStorage.setItem('countdown', JSON.stringify(savedCountdown));
 
     //check for valid date aka check if user put date
     if(countdownDate === ''){
@@ -94,6 +103,21 @@ function reset(){
     //reset values
     countdownTitle = '';
     countdownDate = '';
+    //reset local storage
+    localStorage.removeItem('countdown');
+}
+
+//get values back from storage
+function restorePreviousCountdown(){
+    //get countdown form storage if it is there
+    if(localStorage.getItem('countdown')){
+        inputContainer.hidden = true;
+        savedCountdown = JSON.parse(localStorage.getItem('countdown'));
+        countdownTitle = savedCountdown.title;
+        countdownDate = savedCountdown.date;
+        countdownValue = new Date(countdownDate).getTime();
+        updateDOM();
+    }
 }
 
 //event listener - to take w/e in form to place as initialized values
@@ -102,3 +126,6 @@ countdownForm.addEventListener('submit', updateCountdown);
 countdownBtn.addEventListener('click', reset);
 //listener - reset after countdown is complete
 completeBtn.addEventListener('click', reset);
+
+//on load, check localStorage
+restorePreviousCountdown();
