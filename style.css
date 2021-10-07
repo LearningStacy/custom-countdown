@@ -106,6 +106,53 @@ ul{
     margin-left: -45px;
 }
 
+li{
+    display: inline-block;
+    font-size: 30px;
+    list-style-type: none;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+li span{
+    display: block;
+    font-size: 80px;
+    text-align: center;
+}
+
+.complete{
+    position: relative;
+    top: 60px;
+}
+
+.complete-title{
+    animation: complete 4s infinite;
+}
+
+@keyframes complete {
+    0%{
+        color: rgb(245, 21, 21);
+    }
+
+    25%{
+        color: rgb(248, 248, 7)
+    }
+
+    50%{
+        color: rgb(22, 243, 22);
+        transform: scale(1.5);
+    }
+
+    75%{
+        color: rgb(46, 46, 235);
+    }
+
+    100%{
+        color: rgb(188, 7, 243);
+    }
+    
+}
+
 /* Large Smartphone - portrait view (vertical) */
 @media screen and (max-width: 600px) {
     .video-background{
@@ -155,7 +202,7 @@ ul{
         font-size: 15px;
     }
 
-    /* li span{
-
-    } */
+    li span{
+        font-size: 40px;
+    }
 }
