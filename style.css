@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 html{
     box-sizing: border-box; 
 }
@@ -8,6 +10,7 @@ body{
     overflow-y: hidden;
     display: flex;
     align-items: center;
+    font-family: Nunito, 'sans-serif';
 }
 
 .video-background{
@@ -34,6 +37,75 @@ video{
     background-color: rgba(200, 255, 255, 0.35);
 }
 
+.container{
+    min-width: 580px;
+    min-height: 304px;
+    color: black;
+    margin: 0 auto;
+    padding: 25px 50px;
+    border-radius: 5px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.input-container{
+    position: relative;
+    top: 20px;
+}
+
+h1{
+    font-size: 35px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Form */
+.form{
+    width: 480px;
+}
+
+label{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+input{
+    width: 95%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    outline: none;
+    font-family: Nunito, 'sans-serif';
+}
+
+/* Button */
+button{
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 15px;
+    border: none;
+    text-transform: uppercase;
+    background-color: #006959;
+    color: whitesmoke;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover{
+    filter: brightness(110%);
+}
+
+/* Countdown */
+ul{
+    margin-left: -45px;
+}
+
 /* Large Smartphone - portrait view (vertical) */
 @media screen and (max-width: 600px) {
     .video-background{
@@ -50,7 +122,40 @@ video{
     }
 
     .container{
+        min-width: unset;
+        width: 95vw;
         min-height: 254px;
         padding: 20px;
+        margin: 10px;
     }
+
+    
+    .input-container{
+        top: unset;
+    }
+
+    .countdown{
+        position: relative;
+        top: 10px;
+    }
+
+    .form{
+        width: unset;
+    }
+
+    input{
+        width: 93%;
+    }
+
+    h1{
+        font-size: 20px;
+    }
+
+    li{
+        font-size: 15px;
+    }
+
+    /* li span{
+
+    } */
 }
